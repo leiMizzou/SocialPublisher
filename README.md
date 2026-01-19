@@ -1,9 +1,12 @@
 # SocialPublisher
 
+**[English](./README_EN.md)** | 中文
+
 > 🚀 社交媒体内容运营自动化：搜索 → 互动 → 提炼 → 多平台发布
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![Playwright](https://img.shields.io/badge/Playwright-Automation-green.svg)](https://playwright.dev)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## 特性
 
