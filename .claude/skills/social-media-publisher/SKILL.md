@@ -27,6 +27,23 @@ description: 社交媒体内容运营工具。搜索 Twitter 热门帖子、点�
 
 ## Instructions
 
+### Step 0: 登录状态检查 (必须执行!)
+
+**在开始任何操作之前，必须先检查登录状态：**
+
+```bash
+python3 scripts/check_login.py
+```
+
+**根据检查结果处理：**
+- ✅ 所有平台正常 → 继续 Step 1
+- ⚠️ 有平台需要登录 → 使用 Playwright MCP 访问对应平台完成登录，然后重新检查
+- ❌ 检查失败 → 停止并告知用户
+
+**如果用户只需要发布到部分平台，只需确保目标平台登录正常即可。**
+
+---
+
 ### Step 1: 解析用户意图
 
 从用户的自然语言输入中提取以下参数：
@@ -67,10 +84,11 @@ description: 社交媒体内容运营工具。搜索 Twitter 热门帖子、点�
 确认开始？(可以说"调整为 5 条"或"不要互动"等)
 ```
 
-**确认后，初始化内容追踪：**
+**确认后，必须执行 - 初始化内容追踪：**
 ```bash
-python scripts/content_tracker.py init --topic "{主题}"
+python3 scripts/content_tracker.py init --topic "{主题}"
 ```
+⚠️ **此命令必须成功执行后才能继续，它会创建追踪会话用于记录整个流程。**
 
 ### Step 3: 执行搜索
 
@@ -105,14 +123,14 @@ Twitter: x.com/search?q={主题}&f=top (最热) 或 &f=live (最新)
 - 评论最多 = 评论数
 - 最新 = 发布时间
 
-**搜索完成后，记录结果：**
+**必须执行 - 搜索完成后记录结果：**
 ```bash
-# 将搜索结果保存为 JSON 并记录到 tracker
-python scripts/content_tracker.py search \
+python3 scripts/content_tracker.py search \
   --query "{主题}" \
   --time-range "24h" \
   --posts '[{"id": "xxx", "author": "@user", "content": "...", "likes": 100}]'
 ```
+⚠️ **必须在展示结果给用户之前执行此命令，将搜索结果记录到追踪系统。**
 
 ### Step 4: 展示搜索结果
 
@@ -164,17 +182,18 @@ browser_click: [data-testid="like"]
 发送？(y/n/修改内容)
 ```
 
-**互动完成后，记录到 tracker：**
+**必须执行 - 互动过程中实时记录：**
 ```bash
-# 记录选定互动的帖子
-python scripts/content_tracker.py engage --action select --post-ids "id1,id2,id3"
+# 用户选择互动帖子后，立即记录
+python3 scripts/content_tracker.py engage --action select --post-ids "id1,id2,id3"
 
-# 每次点赞后记录
-python scripts/content_tracker.py engage --action like --post-id "xxx"
+# 每次点赞成功后，立即记录
+python3 scripts/content_tracker.py engage --action like --post-id "xxx"
 
-# 每次回复后记录
-python scripts/content_tracker.py engage --action reply --post-id "xxx" --reply-text "回复内容"
+# 每次回复成功后，立即记录
+python3 scripts/content_tracker.py engage --action reply --post-id "xxx" --reply-text "回复内容"
 ```
+⚠️ **每次互动操作后必须立即执行对应的记录命令，确保追踪数据实时更新。**
 
 ### Step 6: 内容提炼
 
@@ -197,14 +216,15 @@ python scripts/content_tracker.py engage --action reply --post-id "xxx" --reply-
   - 总结2
 ```
 
-**提炼完成后，记录到 tracker：**
+**必须执行 - 提炼完成后记录：**
 ```bash
-python scripts/content_tracker.py distill \
+python3 scripts/content_tracker.py distill \
   --trends '["趋势1", "趋势2"]' \
   --points '["要点1", "要点2", "要点3"]' \
   --quotes '[{"text": "引用内容", "author": "@user"}]' \
   --summary "总结内容"
 ```
+⚠️ **必须在生成各平台内容之前执行此命令，记录提炼的核心内容。**
 
 ### Step 7: 生成各平台内容
 
@@ -287,26 +307,27 @@ python scripts/content_tracker.py distill \
 数据来源：Twitter，采集时间：{日期}
 ```
 
-**内容生成后，记录到 tracker：**
+**必须执行 - 每个平台内容生成后立即记录：**
 ```bash
-# 记录 Twitter Thread（JSON 数组格式）
-python scripts/content_tracker.py generate \
+# Twitter Thread 生成后立即记录（JSON 数组格式）
+python3 scripts/content_tracker.py generate \
   --platform twitter \
   --thread '["1/ 第一条推文内容", "2/ 第二条推文内容", "3/ 第三条推文内容"]'
 
-# 记录小红书内容
-python scripts/content_tracker.py generate \
+# 小红书内容生成后立即记录
+python3 scripts/content_tracker.py generate \
   --platform xiaohongshu \
   --title "标题" \
   --content "正文内容" \
   --hashtags "AI,科技,程序员"
 
-# 记录微信公众号内容
-python scripts/content_tracker.py generate \
+# 微信公众号内容生成后立即记录
+python3 scripts/content_tracker.py generate \
   --platform wechat \
   --title "标题" \
   --content "正文内容"
 ```
+⚠️ **每生成一个平台的内容后必须立即执行对应命令记录。这样核查时才能比对预期内容与实际发布内容。**
 
 ### Step 8: 预览确认
 
@@ -329,39 +350,40 @@ python scripts/content_tracker.py generate \
 
 **使用 Playwright MCP 发布到各平台。**
 
-**每个平台发布后，立即记录状态：**
+**必须执行 - 每个平台发布后立即记录状态：**
 ```bash
-# Twitter Thread 发布后
-python scripts/content_tracker.py publish \
+# Twitter Thread 发布成功后
+python3 scripts/content_tracker.py publish \
   --platform twitter \
   --status published \
   --count 12 \
   --url "https://x.com/user/status/xxx"
 
-# 如果 Thread 未发完
-python scripts/content_tracker.py publish \
+# 如果 Thread 未发完（部分发布）
+python3 scripts/content_tracker.py publish \
   --platform twitter \
   --status partial \
   --count 8 \
   --error "发布中断"
 
-# 小红书发布后
-python scripts/content_tracker.py publish \
+# 小红书发布成功后
+python3 scripts/content_tracker.py publish \
   --platform xiaohongshu \
   --status published \
   --url "https://www.xiaohongshu.com/explore/xxx"
 
-# 微信公众号发布后
-python scripts/content_tracker.py publish \
+# 微信公众号发布成功后
+python3 scripts/content_tracker.py publish \
   --platform wechat \
   --status published \
   --url "https://mp.weixin.qq.com/s/xxx"
 
 # 如果只保存为草稿
-python scripts/content_tracker.py publish \
+python3 scripts/content_tracker.py publish \
   --platform wechat \
   --status draft
 ```
+⚠️ **每个平台发布完成后必须立即执行对应命令。记录实际发布状态（published/partial/draft/failed）和数量，用于最终核查。**
 
 ### Step 10: 报告结果
 
@@ -382,12 +404,13 @@ python scripts/content_tracker.py publish \
 📈 预计曝光: 基于历史数据估算
 ```
 
-### Step 11: 核查验证 (重要!)
+### Step 11: 核查验证 (必须执行!)
 
-**使用 tracker 执行自动核查：**
+**必须执行 - 使用 tracker 执行自动核查：**
 ```bash
-python scripts/content_tracker.py verify
+python3 scripts/content_tracker.py verify
 ```
+⚠️ **发布流程结束后必须执行核查命令！这是防止漏发的最后一道防线。**
 
 这会输出完整的核查报告：
 
@@ -415,14 +438,15 @@ Twitter Thread:
    ...
 ```
 
-**补发完成后，更新 tracker 并重新核查：**
+**必须执行 - 补发完成后更新并重新核查：**
 ```bash
 # 更新发布数量
-python scripts/content_tracker.py publish --platform twitter --status published --count 12
+python3 scripts/content_tracker.py publish --platform twitter --status published --count 12
 
-# 重新核查
-python scripts/content_tracker.py verify
+# 重新核查，确认全部完成
+python3 scripts/content_tracker.py verify
 ```
+⚠️ **补发后必须更新状态并重新核查，直到核查报告显示所有内容已完整发布。**
 
 ---
 
@@ -446,44 +470,44 @@ python scripts/content_tracker.py verify
 
 ```bash
 # 初始化新会话
-python scripts/content_tracker.py init --topic "Claude Skill"
+python3 scripts/content_tracker.py init --topic "Claude Skill"
 
 # 记录搜索结果
-python scripts/content_tracker.py search \
+python3 scripts/content_tracker.py search \
   --query "Claude Skill" \
   --time-range "24h" \
   --posts '[{"id": "xxx", "author": "@user", "content": "...", "likes": 100}]'
 
 # 记录互动
-python scripts/content_tracker.py engage --action select --post-ids "id1,id2,id3"
-python scripts/content_tracker.py engage --action like --post-id "xxx"
-python scripts/content_tracker.py engage --action reply --post-id "xxx" --reply-text "回复内容"
+python3 scripts/content_tracker.py engage --action select --post-ids "id1,id2,id3"
+python3 scripts/content_tracker.py engage --action like --post-id "xxx"
+python3 scripts/content_tracker.py engage --action reply --post-id "xxx" --reply-text "回复内容"
 
 # 记录提炼内容
-python scripts/content_tracker.py distill \
+python3 scripts/content_tracker.py distill \
   --trends '["趋势1", "趋势2"]' \
   --points '["要点1", "要点2"]' \
   --quotes '[{"text": "引用", "author": "@user"}]' \
   --summary "总结"
 
 # 记录生成的内容
-python scripts/content_tracker.py generate --platform twitter --thread '["1/ ...", "2/ ..."]'
-python scripts/content_tracker.py generate --platform xiaohongshu --title "标题" --content "内容"
-python scripts/content_tracker.py generate --platform wechat --title "标题" --content "内容"
+python3 scripts/content_tracker.py generate --platform twitter --thread '["1/ ...", "2/ ..."]'
+python3 scripts/content_tracker.py generate --platform xiaohongshu --title "标题" --content "内容"
+python3 scripts/content_tracker.py generate --platform wechat --title "标题" --content "内容"
 
 # 记录发布状态
-python scripts/content_tracker.py publish --platform twitter --status published --count 12 --url "https://..."
-python scripts/content_tracker.py publish --platform xiaohongshu --status published --url "https://..."
-python scripts/content_tracker.py publish --platform wechat --status draft
+python3 scripts/content_tracker.py publish --platform twitter --status published --count 12 --url "https://..."
+python3 scripts/content_tracker.py publish --platform xiaohongshu --status published --url "https://..."
+python3 scripts/content_tracker.py publish --platform wechat --status draft
 
 # 查看会话
-python scripts/content_tracker.py list              # 列出所有会话
-python scripts/content_tracker.py report            # 查看最新报告
-python scripts/content_tracker.py report -s xxx     # 查看指定会话报告
+python3 scripts/content_tracker.py list              # 列出所有会话
+python3 scripts/content_tracker.py report            # 查看最新报告
+python3 scripts/content_tracker.py report -s xxx     # 查看指定会话报告
 
 # 执行核查
-python scripts/content_tracker.py verify            # 核查最新会话
-python scripts/content_tracker.py session-id        # 获取最新会话ID
+python3 scripts/content_tracker.py verify            # 核查最新会话
+python3 scripts/content_tracker.py session-id        # 获取最新会话ID
 ```
 
 ### 核查报告示例
@@ -543,17 +567,39 @@ python scripts/content_tracker.py session-id        # 获取最新会话ID
 ## 配套脚本
 
 ```bash
-# 检查登录状态
-python scripts/check_login.py
+# 检查登录状态（Step 0 必须执行）
+python3 scripts/check_login.py
 
 # 检查单个平台
-python scripts/check_login.py -p twitter
+python3 scripts/check_login.py -p twitter
 
 # JSON 格式输出（供程序调用）
-python scripts/check_login.py --json
+python3 scripts/check_login.py --json
 ```
 
 **登录方式：** 使用 Playwright MCP 访问对应平台进行登录，Cookie 会自动保存。
+
+---
+
+## 强制执行规则
+
+⚠️ **以下 Python 脚本调用是强制执行的，不是可选项：**
+
+| 时机 | 必须执行的命令 |
+|------|----------------|
+| 开始前 | `python3 scripts/check_login.py` |
+| 确认需求后 | `python3 scripts/content_tracker.py init --topic "..."` |
+| 搜索完成后 | `python3 scripts/content_tracker.py search ...` |
+| 每次互动后 | `python3 scripts/content_tracker.py engage ...` |
+| 提炼完成后 | `python3 scripts/content_tracker.py distill ...` |
+| 每平台内容生成后 | `python3 scripts/content_tracker.py generate ...` |
+| 每平台发布后 | `python3 scripts/content_tracker.py publish ...` |
+| 流程结束时 | `python3 scripts/content_tracker.py verify` |
+
+**不执行这些命令将导致：**
+- 无法准确核查发布状态
+- 无法检测漏发内容
+- 无法生成追踪报告
 
 ---
 
