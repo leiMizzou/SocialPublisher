@@ -17,6 +17,26 @@ English | **[中文](./README.md)**
 - ✅ **Content Tracking** - Full workflow tracking, automatic verification
 - ✅ **Claude Code Integration** - Use as a Skill, AI-powered workflow
 
+## Architecture
+
+> ⚠️ **Important**: Full functionality requires **Claude Code Skill**. Python scripts are auxiliary tools only.
+
+| Component | Purpose | Standalone? |
+|-----------|---------|-------------|
+| **Claude Skill** | Complete workflow (Search→Engage→Distill→Generate→Publish→Verify) | ✅ Core |
+| Python Scripts | Login check, content tracking, verification reports | ⚠️ Auxiliary |
+| Shell Commands | Shortcuts for Python scripts | ⚠️ Auxiliary |
+
+**Core capabilities provided by Skill:**
+- 🌐 Browser automation (via Playwright MCP for Twitter, Xiaohongshu, WeChat)
+- 🤖 AI content generation (distill insights, generate platform-specific content)
+- 🔄 Workflow orchestration (user confirmation, error retry, state management)
+
+**Python scripts can only:**
+- Check if cookie files exist/expired
+- Record tracking data to JSON files
+- Generate verification reports
+
 ## Workflow
 
 ```
