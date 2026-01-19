@@ -65,6 +65,76 @@ GitHub: github.com/leiMizzou/SocialPublisher
 
 ---
 
+## Twitter Thread (中文)
+
+```
+1/ 🚀 开源了 SocialPublisher —— AI 社交媒体运营工具
+
+不只是发帖工具，还能当你的：
+→ 个人情报系统
+→ 自媒体冷启动引擎
+→ 领域学习助手
+→ 互动自动驾驶
+
+🔜 图片/视频生成 & Codex 版开发中
+
+github.com/leiMizzou/SocialPublisher
+
+2/ 🔍 玩法一：个人情报系统
+
+自动追踪任何领域：
+• AI/ML 最新突破
+• 竞品动态
+• 行业趋势
+• 投资信号
+
+一句话 "搜索今天 AI Agent 热帖" → 每天早上收到精选简报
+
+3/ 🚀 玩法二：自媒体冷启动
+
+新号？零粉丝？
+
+• 自动找热点蹭流量
+• 智能互动（不是垃圾评论）
+• 同时在 3 个平台建立存在感
+• 内容风格自动适配各平台文化
+
+4/ 📚 玩法三：领域学习
+
+想快速了解一个新领域？
+
+• 搜索 "RAG 最佳实践" → 获取社区智慧
+• 从 50 条帖子提炼 5 个核心观点
+• 保存为结构化笔记
+• 每周追踪趋势变化
+
+5/ 💼 玩法四：创业者必备
+
+• 监控用户怎么评价你的产品
+• 自然地与潜在用户互动
+• 把反馈转化为内容素材
+• 多平台 Build in Public
+
+6/ 🎯 核心流程：
+
+搜索 🔍 → 互动 💬 → 提炼 📊 → 发布 📱 → 核查 ✅
+
+支持 Twitter、小红书、微信公众号
+
+AI 自动适配各平台调性
+
+7/ 🔜 Coming Soon：
+
+• 图片/视频内容生成
+• OpenAI Codex 适配版
+
+欢迎 Star 追更 ⭐
+
+github.com/leiMizzou/SocialPublisher
+```
+
+---
+
 ## 小红书
 
 ```
@@ -121,10 +191,22 @@ Not just a publishing tool. It's your:
 github.com/leiMizzou/SocialPublisher
 ```
 
-### Thread
+### Thread (Complete)
 
 ```
-1/ 🔍 USE CASE: Personal Intelligence System
+1/ 🚀 Open-sourced SocialPublisher - AI-powered social media automation
+
+Not just a publishing tool. It's your:
+→ Personal intelligence system
+→ Content cold-start engine
+→ Research assistant
+→ Engagement autopilot
+
+🔜 Coming: Image/Video support & Codex edition
+
+github.com/leiMizzou/SocialPublisher
+
+2/ 🔍 USE CASE: Personal Intelligence System
 
 Track any domain automatically:
 • AI/ML breakthroughs
@@ -134,7 +216,7 @@ Track any domain automatically:
 
 "Search AI Agent posts daily" → Get curated insights every morning.
 
-2/ 🚀 USE CASE: Self-Media Cold Start
+3/ 🚀 USE CASE: Self-Media Cold Start
 
 New account? Zero followers?
 
@@ -144,7 +226,7 @@ This tool helps you:
 • Build presence across 3 platforms simultaneously
 • Generate content that fits each platform's culture
 
-3/ 📚 USE CASE: Research & Learning
+4/ 📚 USE CASE: Research & Learning
 
 Studying a new field?
 
@@ -153,14 +235,14 @@ Studying a new field?
 • Save as structured notes
 • Track weekly for trend changes
 
-4/ 💼 USE CASE: Founder/Indie Hacker
+5/ 💼 USE CASE: Founder/Indie Hacker
 
 • Monitor what people say about your product
 • Engage with potential users naturally
 • Turn feedback into content
 • Build in public across platforms
 
-5/ 🎯 The magic:
+6/ 🎯 The workflow:
 
 Search 🔍 → Engage 💬 → Distill 📊 → Publish 📱
 
@@ -168,7 +250,7 @@ Works for Twitter, Xiaohongshu (RED), WeChat.
 
 AI adapts tone for each platform automatically.
 
-6/ 🔜 What's Next:
+7/ 🔜 What's Next:
 
 • Image & Video generation support
 • OpenAI Codex compatible edition
