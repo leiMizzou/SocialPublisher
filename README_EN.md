@@ -17,6 +17,12 @@ English | **[中文](./README.md)**
 - ✅ **Content Tracking** - Full workflow tracking, automatic verification
 - ✅ **Claude Code Integration** - Use as a Skill, AI-powered workflow
 
+## Showcase
+
+<img src="./assets/example-twitter-thread.png" width="400" alt="Twitter Thread Example"/>
+
+> Example: Auto-generated "AI Agent Daily Highlights" Twitter Thread (12 tweets)
+
 ## Architecture
 
 > ⚠️ **Important**: Full functionality requires **Claude Code Skill**. Python scripts are auxiliary tools only.

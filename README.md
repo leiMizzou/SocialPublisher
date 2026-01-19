@@ -17,6 +17,12 @@
 - ✅ **内容追踪** - 全流程记录，自动核查漏发
 - ✅ **Claude Code 集成** - 作为 Skill 使用，AI 驱动全流程
 
+## 效果展示
+
+<img src="./assets/example-twitter-thread.png" width="400" alt="Twitter Thread 示例"/>
+
+> 示例：自动生成的 AI Agent 今日热点 Twitter Thread (12条)
+
 ## 架构说明
 
 > ⚠️ **重要**：完整功能需要通过 **Claude Code Skill** 执行，Python 脚本仅为辅助工具。
