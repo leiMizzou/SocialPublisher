@@ -28,8 +28,11 @@ English | **[中文](./README.md)**
 | Shell Commands | Shortcuts for Python scripts | ⚠️ Auxiliary |
 
 **Core capabilities provided by Skill:**
+- 🔍 Smart search (search any topic on Twitter/X, filter by popularity and recency)
+- 📊 Content analysis (identify trends, extract key insights, note important quotes)
+- 💬 Auto engagement (like valuable posts, generate insightful replies)
 - 🌐 Browser automation (via Playwright MCP for Twitter, Xiaohongshu, WeChat)
-- 🤖 AI content generation (distill insights, generate platform-specific content)
+- 🤖 AI content generation (create original content based on search results, adapted to each platform's style)
 - 🔄 Workflow orchestration (user confirmation, error retry, state management)
 
 **Python scripts can only:**
