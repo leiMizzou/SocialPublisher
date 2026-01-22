@@ -2,6 +2,8 @@
 
 English | **[中文](./README.md)**
 
+> **Part of [CC Suite](https://github.com/leiMizzou/CC-Suite)** - The Standard Library for Claude Code Workflows
+
 > 🚀 Social Media Content Automation: Search → Engage → Distill → Multi-Platform Publish
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)

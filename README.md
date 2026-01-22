@@ -2,6 +2,8 @@
 
 **[English](./README_EN.md)** | 中文
 
+> **[CC Suite](https://github.com/leiMizzou/CC-Suite) 成员** - Claude Code 工作流标准库
+
 > 🚀 社交媒体内容运营自动化：搜索 → 互动 → 提炼 → 多平台发布
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
